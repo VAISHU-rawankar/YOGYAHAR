@@ -1,0 +1,11 @@
+{
+  "name": "yogyahar-root",
+  "private": true,
+  "scripts": {
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev": "npx concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "start:backend": "npm start --prefix backend",
+    "seed:backend": "npm run seed --prefix backend"
+  }
+}

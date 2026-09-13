@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yogyahar | Eat Right, Live Bright</title>
+    <script>
+      /*
+       * Proportional viewport scaler.
+       * Below BASE (1440px) the design renders 1:1 exactly as authored — laptops,
+       * tablets and phones are untouched and keep all their own breakpoints.
+       * Above BASE the whole page scales up uniformly with the screen so large
+       * monitors and 4K displays show the same design, proportionally larger,
+       * filling the screen instead of floating as a small island in the middle.
+       */
+      (function () {
+        var BASE = 1280; // reference width — standard laptop screen width
+        var MAX = 3.5; // safety cap for 4K/8K displays
+        function applyScale() {
+          var root = document.documentElement;
+          root.style.zoom = ""; // reset so we measure the true, unscaled viewport
+          var w = window.innerWidth;
+          var z = w > BASE ? Math.min(w / BASE, MAX) : 1;
+          root.style.zoom = z === 1 ? "" : String(z);
+        }
+        applyScale();
+        window.addEventListener("resize", applyScale, { passive: true });
+        window.addEventListener("orientationchange", applyScale, { passive: true });
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

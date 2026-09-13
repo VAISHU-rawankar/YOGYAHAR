@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Poppins", "Segoe UI", sans-serif;
+  --font-sans: "Poppins", "Segoe UI", sans-serif;
+
+  /* Brand palette — citrus green / warm cream / juicy accents */
+  --color-brand-cream: #fcfaef;
+  --color-brand-forest: #1f2b12;
+  --color-brand-lime: #c9d94a;
+  --color-brand-yellow: #f5d13a;
+}
+
+html {
+  /* clip (not hidden) prevents horizontal overflow WITHOUT turning html into a
+     scroll container — which is what silently broke `position: sticky` before. */
+  overflow-x: clip;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  width: 100%;
+  position: relative;
+  background-color: #fcfaef;
+  color: #26301a;
+}
+
+/* Editorial display for big headlines; clean sans for smaller titles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: #1f2b12;
+  text-transform: none;
+  font-weight: 800;
+}
+
+h1, h2 {
+  font-optical-sizing: auto;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
+  font-size: 38px;
+}
+
+h3, h4 {
+  letter-spacing: -0.01em;
+}
+
+/* Italic accent — editorial emphasis */
+.serif-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.25s ease-out;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(8deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+.animate-float-mid {
+  animation: float 6s ease-in-out infinite;
+}
+.animate-float-fast {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.fill-mode-forwards {
+  animation-fill-mode: forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-350 { animation-delay: 350ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-650 { animation-delay: 650ms; }
+
+.image-fade-edges {
+  mask-image: linear-gradient(to right, transparent, black 25px, black calc(100% - 25px), transparent),
+              linear-gradient(to bottom, transparent, black 25px, black calc(100% - 25px), transparent);
+  mask-composite: intersect;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 25px, black calc(100% - 25px), transparent),
+                      linear-gradient(to bottom, transparent, black 25px, black calc(100% - 25px), transparent);
+  -webkit-mask-composite: destination-in;
+}
+
+/* Mobile-first heading size override */
+@media (max-width: 639px) {
+  h1, h2 {
+    font-size: 26px;
+    line-height: 1.1;
+  }
+}
+
+/* Ensure tap targets are large enough */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom Scrollbar Styling for CMS layout elements */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #a69d85 transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #a69d85;
+  border-radius: 9999px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #8e846a;
+}
+
+/* Hide scrollbar utility class */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
