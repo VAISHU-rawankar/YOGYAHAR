@@ -22,7 +22,7 @@ export default function AyurvedaQuote() {
   return (
     <section 
       className="relative bg-[#1f2b12] py-14 bg-cover bg-center bg-fixed overflow-hidden"
-      style={bgImage ? { backgroundImage: `url(${bgImage})` } : {}}
+      style={bgImage ? { backgroundImage: `url("${encodeURI(bgImage)}")` } : {}}
     >
       {/* Dark overlay for readability */}
       {bgImage && (

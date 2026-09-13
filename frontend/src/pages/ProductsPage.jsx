@@ -579,7 +579,7 @@ export default function ProductsPage() {
                           <img 
                             src={resolveImage(product.image)} 
                             alt={t(product.name)} 
-                            className="absolute inset-0 w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-500" 
+                            className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                           />
                         ) : (
                           <ProductIcon emoji={product.emoji} className="w-14 h-14 text-[#1b3d17]/70 transform group-hover:scale-110 transition-transform duration-300" />
@@ -615,8 +615,8 @@ export default function ProductsPage() {
                           </Link>
                         </div>
 
-                        {/* 3 Price Duration Display */}
-                        {(() => {
+                        {/* 3 Price Duration Display (subscription products only) */}
+                        {isSubscription && (() => {
                           const p1 = Number(product.price1Day) || Number(product.price) || 149;
                           const p6 = Number(product.price6Days) || Math.round(p1 * 6 * 0.9);
                           const p25 = Number(product.price25Days) || Math.round(p1 * 25 * 0.8);
@@ -645,9 +645,9 @@ export default function ProductsPage() {
 
                         <Link
                           to={`/product/${product.category}/${encodeURIComponent(product.name)}`}
-                          className="w-full block bg-[#1f2b12] hover:bg-[#2a3818] text-[#cfe04a] text-center font-extrabold py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-sm hover:scale-[1.02] active:scale-95 no-underline"
+                          className={`w-full block bg-[#1f2b12] hover:bg-[#2a3818] text-[#cfe04a] text-center font-extrabold py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-sm hover:scale-[1.02] active:scale-95 no-underline ${isSubscription ? "" : "mt-3"}`}
                         >
-                          {t("View Details & Plans")} &rarr;
+                          {isSubscription ? t("View Details & Plans") : t("View Details")} &rarr;
                         </Link>
                       </div>
                     </div>

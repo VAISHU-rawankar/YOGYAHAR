@@ -713,7 +713,11 @@ export default function ProductDetail() {
         {/* Subscription Packages — 3 Duration Pricing Tiers */}
         {(() => {
           const rawPrice = productItem?.price;
-          const p1 = Number(productItem?.price1Day) || (typeof rawPrice === "number" ? rawPrice : parseInt(String(rawPrice || "149").replace(/\D/g, "")) || 149);
+          const defaultBasePrice =
+            decodedCategory === "juices" ? 129 :
+            (decodedCategory === "nonSubItems" || decodedCategory === "non-sub") ? 199 :
+            149;
+          const p1 = Number(productItem?.price1Day) || (typeof rawPrice === "number" ? rawPrice : parseInt(String(rawPrice || "").replace(/\D/g, "")) || defaultBasePrice);
           const p6 = Number(productItem?.price6Days) || Math.round(p1 * 6 * 0.9);
           const p25 = Number(productItem?.price25Days) || Math.round(p1 * 25 * 0.8);
 

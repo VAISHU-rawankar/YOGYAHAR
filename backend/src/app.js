@@ -42,6 +42,7 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 app.get("/", (req, res) => res.json({ status: "Yogyahar API Running" }));
 
 app.use("/api/auth", authRoutes);
